@@ -1,21 +1,31 @@
-sourcefiles = 	push_swap.c
+NAME	:= a.out
+CFLAGS	:= -g -o -Wextra -Wall -Werror -Wunreachable-code -Ofast 
+LIBFT 	:= ./libft
 
-objects =		$(sourcefiles:.c=.o)
+HEADERS	:= -I /include -I$(LIBFT)
+LIBS	:= $(LIBFT)/libft.a
+SRCS	:= push_swap.c push_swap_utils.c
+OBJS	:= ${SRCS:.c=.o}
 
-NAME =			libft.a
+all: libft $(NAME)
 
-all:			$(NAME)
-
-$(NAME):		$(objects)
-	@ar rcs libft.a $(objects)
+libft:
+	@make -C $(LIBFT)
 
 %.o: %.c
-	cc -Wall -Wextra -Werror -c $< -o $@
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
-	@rm -f $(objects)
+	@rm -rf $(OBJS)
+	@make clean -C $(LIBFT)
 
-fclean:
-	@rm -f $(objects) $(NAME)
+fclean: clean
+	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT)
 
-re: 			fclean all
+re: clean all
+
+.PHONY: all, clean, fclean, re, libft
