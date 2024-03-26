@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/26 15:47:27 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/26 18:20:06 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,6 @@ struct s_node	*startlist(int data)
 	head = malloc(sizeof(struct s_node));
 	head->data = data;
 	head->link = NULL;
-	return (head);
-}
-
-struct s_node	*reverse(struct s_node *head)
-{
-	struct s_node	*prev;
-	struct s_node	*next;
-
-	prev = NULL;
-	next = NULL;
-	while (head != NULL)
-	{
-		next = head->link;
-		head->link = prev;
-		prev = head;
-		head = next;
-	}
-	head = prev;
 	return (head);
 }
 
