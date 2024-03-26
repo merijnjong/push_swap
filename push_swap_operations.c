@@ -6,13 +6,13 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:08:32 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/26 18:20:19 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/26 18:21:58 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct s_node	*ft_sa(struct s_node *head)
+t_node	*ft_sa(t_node *head)
 {
 	int	temp;
 
@@ -26,10 +26,10 @@ struct s_node	*ft_sa(struct s_node *head)
 	return (head);
 }
 
-void	ft_ra(struct s_node **head)
+void	ft_ra(t_node **head)
 {
-	struct s_node	*temp;
-	struct s_node	*temp2;
+	t_node	*temp;
+	t_node	*temp2;
 
 	temp = *head;
 	temp2 = (*head)->link;
@@ -39,14 +39,14 @@ void	ft_ra(struct s_node **head)
 	{
 		temp->link = *head;
 		(*head)->link = NULL;
-		*head = temp2; 
+		*head = temp2;
 	}
 }
 
-struct s_node	*reverse(struct s_node *head)
+t_node	*reverse(t_node *head)
 {
-	struct s_node	*prev;
-	struct s_node	*next;
+	t_node	*prev;
+	t_node	*next;
 
 	prev = NULL;
 	next = NULL;

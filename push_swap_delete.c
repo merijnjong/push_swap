@@ -6,15 +6,15 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:44:35 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/26 16:53:06 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/26 18:22:22 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct s_node	*del_first(struct s_node *head)
+t_node	*del_first(t_node *head)
 {
-	struct s_node	*temp;
+	t_node	*temp;
 	
 	if (head == NULL)
 		ft_printf("List is already empty");
@@ -27,10 +27,10 @@ struct s_node	*del_first(struct s_node *head)
 	return (head);
 }
 
-struct s_node	*del_last(struct s_node *head)
+t_node	*del_last(t_node *head)
 {
-	struct s_node	*temp;
-	struct s_node	*temp2;
+	t_node	*temp;
+	t_node	*temp2;
 	
 	if (head == NULL)
 		ft_printf("List is already empty");

@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/26 18:03:20 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/26 18:22:58 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char *argv[])
 {
-	struct s_node	*stack_a;
-	struct s_node	*ptr;
+	t_node	*stack_a;
+	t_node	*ptr;
 	int				i;
 	int				data;
 
