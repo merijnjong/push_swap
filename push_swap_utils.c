@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/26 18:22:14 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/27 15:18:10 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // 	return (head);
 // }
 
-t_node	*startlist(int data)
+t_node	*startstack(int data)
 {
 	t_node	*head;
 
@@ -59,11 +59,19 @@ t_node	*add_node_end(t_node *ptr, int data)
 	return (temp);
 }
 
-void	ft_print_data(t_node *head)
+void	ft_display(t_node *head)
 {
+	int		count;
 	t_node	*ptr;
 
-	ptr = NULL;
+	count = 0;
+	ptr = head;
+	while (ptr != NULL)
+	{
+		count++;
+		ptr = ptr->link;
+	}
+	ft_printf("Number of nodes: %d\n", count);
 	if (head == NULL)
 		ft_printf("Linked list is empty\n");
 	ptr = head;
@@ -72,22 +80,4 @@ void	ft_print_data(t_node *head)
 		ft_printf("Data: %d\n", ptr->data);
 		ptr = ptr->link;
 	}
-}
-
-void	ft_node_count(t_node *head)
-{
-	int				count;
-	t_node	*ptr;
-
-	count = 0;
-	ptr = NULL;
-	if (head == NULL)
-		ft_printf("Linked list is empty\n");
-	ptr = head;
-	while (ptr != NULL)
-	{
-		count++;
-		ptr = ptr->link;
-	}
-	ft_printf("Number of nodes: %d\n", count);
 }

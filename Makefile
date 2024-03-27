@@ -26,6 +26,8 @@ fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT)
 
+# run:
+
 re: clean all
 
 .PHONY: all, clean, fclean, re, libft
