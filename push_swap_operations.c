@@ -6,62 +6,69 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:08:32 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/27 14:35:43 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/27 17:04:59 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_sa(t_node *head)
+t_node	*ft_sa(t_node *stack_a)
 {
 	int	temp;
 
 	temp = 0;
-	if (head != NULL && head->link != NULL)
+	if (stack_a != NULL && stack_a->link != NULL)
 	{
-		temp = head->data;
-		head->data = head->link->data;
-		head->link->data = temp;	
+		temp = stack_a->data;
+		stack_a->data = stack_a->link->data;
+		stack_a->link->data = temp;	
 	}
-	return (head);
+	return (stack_a);
 }
 
-void	ft_ra(t_node **head)
+t_node	*ft_sb(t_node *stack_b)
 {
-	t_node	*current;
-	t_node	*new;
+	int	temp;
 
-	current = *head; // point to the beginning of the current list
-	new = (*head)->link; // point to the beginning of the new list
-	if (*head != NULL && (*head)->link != NULL)
+	temp = 0;
+	if (stack_b != NULL && stack_b->link != NULL)
 	{
-		while (current->link != NULL)
-		{
-			current = current->link; // point to the last node of the current list
-		}
-		current->link = *head; // loop the list so that the last node points to the beginning of the current list
-		(*head)->link = NULL; // make the beginning of the current list point to the end of the new list
-		*head = new; // make the beginning of the new list point to the second place of the old list
+		temp = stack_b->data;
+		stack_b->data = stack_b->link->data;
+		stack_b->link->data = temp;	
+	}
+	return (stack_b);
+}
+
+void	ft_ss(t_node *stack_a, t_node *stack_b)
+{
+	ft_sa(stack_a);
+	ft_sb(stack_b);
+}
+
+void	ft_pa(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*push;
+
+	push = *stack_b;
+	if (*stack_b != NULL)
+	{
+		*stack_b = (*stack_b)->link;
+		push->link = *stack_a;
+		*stack_a = push;
 	}
 }
 
-void	ft_rra(t_node **head)
+void	ft_pb(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*temp;
-	t_node	*temp2;
+	t_node	*push;
 
-	temp = *head;
-	temp2 = *head;
-	if (*head != NULL && (*head)->link != NULL)
+	push = *stack_a; // get the node to be pushed
+	if (*stack_a != NULL)
 	{
-		while (temp->link != NULL) // Traverse to find the last and second-to-last nodes
-		{
-			temp2 = temp; // second to last node
-			temp = temp->link; // last node
-		}
-		temp2->link = NULL; // Make the second-to-last node the new last node
-		temp->link = *head; // Connect the original last node to the head
-		*head = temp; // Update the head to point to the new last node
+		*stack_a = (*stack_a)->link; // point to the next node
+		push->link = *stack_b; // link the pushed node to the top of stack_b
+		*stack_b = push; //update stack_b to point to the pushed node
 	}
 }
 

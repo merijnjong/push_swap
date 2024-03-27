@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/27 15:17:42 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/27 17:04:07 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,33 @@ int	main(int argc, char *argv[])
 	}
 	// add_node_beg(&stack_a, 10);
 	// stack_a = reverse(stack_a);
-	ft_rra(&stack_a);
-	// ft_sa(stack_a);;
+	
 	ft_display(stack_a);
 	ft_display(stack_b);
+
+	ft_printf("\noperation\n\n");
+
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+
+	ft_display(stack_a);
+	ft_display(stack_b);
+	
+	ft_printf("\noperation\n\n");
+	
+	ft_ss(stack_a, stack_b);
+
+	ft_display(stack_a);
+	ft_display(stack_b);
+
+	ft_printf("\noperation\n\n");
+	
+	ft_rr(&stack_a, &stack_b);
+	ft_rrr(&stack_a, &stack_b);
+
+	ft_display(stack_a);
+	ft_display(stack_b);
+	
 	return (0);
 }
