@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:08:32 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/27 17:04:59 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/27 18:19:52 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_node	*ft_sa(t_node *stack_a)
 		stack_a->data = stack_a->link->data;
 		stack_a->link->data = temp;	
 	}
+	// write(1, "sa\n", 3);
 	return (stack_a);
 }
 
@@ -37,6 +38,7 @@ t_node	*ft_sb(t_node *stack_b)
 		stack_b->data = stack_b->link->data;
 		stack_b->link->data = temp;	
 	}
+	// write(1, "sb\n", 3);
 	return (stack_b);
 }
 
@@ -44,6 +46,7 @@ void	ft_ss(t_node *stack_a, t_node *stack_b)
 {
 	ft_sa(stack_a);
 	ft_sb(stack_b);
+	// write(1, "ss\n", 3);
 }
 
 void	ft_pa(t_node **stack_a, t_node **stack_b)
@@ -57,6 +60,7 @@ void	ft_pa(t_node **stack_a, t_node **stack_b)
 		push->link = *stack_a;
 		*stack_a = push;
 	}
+	// write(1, "pa\n", 3);
 }
 
 void	ft_pb(t_node **stack_a, t_node **stack_b)
@@ -70,6 +74,7 @@ void	ft_pb(t_node **stack_a, t_node **stack_b)
 		push->link = *stack_b; // link the pushed node to the top of stack_b
 		*stack_b = push; //update stack_b to point to the pushed node
 	}
+	// write(1, "pb\n", 3);
 }
 
 t_node	*reverse(t_node *head)

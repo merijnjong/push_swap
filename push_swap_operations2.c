@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:48:29 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/27 17:03:15 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/27 18:20:08 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_ra(t_node **stack_a)
 		(*stack_a)->link = NULL; // make the beginning of the current list point to the end of the new list
 		*stack_a = new; // make the beginning of the new list point to the second place of the old list
 	}
+	// write(1, "ra\n", 3);
 }
 
 void	ft_rb(t_node **stack_b)
@@ -48,12 +49,14 @@ void	ft_rb(t_node **stack_b)
 		(*stack_b)->link = NULL;
 		*stack_b = new;
 	}
+	// write(1, "rb\n", 3);
 }
 
 void	ft_rr(t_node **stack_a, t_node **stack_b)
 {
 	ft_ra(stack_a);
 	ft_rb(stack_b);
+	// write(1, "rr\n", 3);
 }
 
 void	ft_rra(t_node **stack_a)
@@ -74,6 +77,7 @@ void	ft_rra(t_node **stack_a)
 		temp->link = *stack_a; // Connect the original last node to stack_a
 		*stack_a = temp; // Update stack_a to point to the new last node
 	}
+	// write(1, "rra\n", 4);
 }
 
 void	ft_rrb(t_node **stack_b)
@@ -94,10 +98,12 @@ void	ft_rrb(t_node **stack_b)
 		temp->link = *stack_b;
 		*stack_b = temp;
 	}
+	// write(1, "rrb\n", 4);
 }
 
 void	ft_rrr(t_node **stack_a, t_node **stack_b)
 {
 	ft_rra(stack_a);
 	ft_rrb(stack_b);
+	// write(1, "rrr\n", 4);
 }
