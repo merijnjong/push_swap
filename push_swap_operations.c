@@ -6,47 +6,60 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:08:32 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/27 18:19:52 by mjong            ###   ########.fr       */
+/*   Updated: 2024/03/28 12:58:33 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_sa(t_node *stack_a)
+void	ft_sa(t_node **stack_a)
 {
-	int	temp;
+	t_node	*temp;
 
-	temp = 0;
-	if (stack_a != NULL && stack_a->link != NULL)
+	if (stack_a != NULL && (*stack_a)->link != NULL)
 	{
-		temp = stack_a->data;
-		stack_a->data = stack_a->link->data;
-		stack_a->link->data = temp;	
+		temp = *stack_a;
+		*stack_a = (*stack_a)->link;
+		temp->link = (*stack_a)->link;
+		(*stack_a)->link = temp;	
 	}
-	// write(1, "sa\n", 3);
-	return (stack_a);
+	write(1, "sa\n", 3);
 }
 
-t_node	*ft_sb(t_node *stack_b)
+void	ft_sb(t_node **stack_b)
 {
-	int	temp;
+	t_node	*temp;
 
-	temp = 0;
-	if (stack_b != NULL && stack_b->link != NULL)
+	if (stack_b != NULL && (*stack_b)->link != NULL)
 	{
-		temp = stack_b->data;
-		stack_b->data = stack_b->link->data;
-		stack_b->link->data = temp;	
+		temp = *stack_b;
+		*stack_b = (*stack_b)->link;
+		temp->link = (*stack_b)->link;
+		(*stack_b)->link = temp;	
 	}
-	// write(1, "sb\n", 3);
-	return (stack_b);
+	write(1, "sa\n", 3);
 }
 
-void	ft_ss(t_node *stack_a, t_node *stack_b)
+void	ft_ss(t_node **stack_a, t_node **stack_b)
 {
-	ft_sa(stack_a);
-	ft_sb(stack_b);
-	// write(1, "ss\n", 3);
+	t_node	*temp;
+
+	if (stack_a != NULL && (*stack_a)->link != NULL)
+	{
+		temp = *stack_a;
+		*stack_a = (*stack_a)->link;
+		temp->link = (*stack_a)->link;
+		(*stack_a)->link = temp;	
+	}
+	temp = NULL;
+	if (stack_b != NULL && (*stack_b)->link != NULL)
+	{
+		temp = *stack_b;
+		*stack_b = (*stack_b)->link;
+		temp->link = (*stack_b)->link;
+		(*stack_b)->link = temp;	
+	}
+	write(1, "ss\n", 3);
 }
 
 void	ft_pa(t_node **stack_a, t_node **stack_b)
@@ -60,7 +73,7 @@ void	ft_pa(t_node **stack_a, t_node **stack_b)
 		push->link = *stack_a;
 		*stack_a = push;
 	}
-	// write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
 void	ft_pb(t_node **stack_a, t_node **stack_b)
@@ -74,7 +87,7 @@ void	ft_pb(t_node **stack_a, t_node **stack_b)
 		push->link = *stack_b; // link the pushed node to the top of stack_b
 		*stack_b = push; //update stack_b to point to the pushed node
 	}
-	// write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }
 
 t_node	*reverse(t_node *head)
