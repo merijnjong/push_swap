@@ -1,4 +1,4 @@
-NAME	:= a.out
+NAME	:= push_swap
 CFLAGS	:= -g -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBFT 	:= ./libft
 

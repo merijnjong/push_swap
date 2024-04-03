@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/28 16:19:31 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/03 13:24:01 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	main(int argc, char *argv[])
 			add_node_end(&stack_a, data);
 		i++;
 	}
-	ft_sort(&stack_a, &stack_b, &push);
+	ft_sort(&stack_a, &stack_b, &push, argc - 1);
 	return (0);
 }
