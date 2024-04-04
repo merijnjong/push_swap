@@ -6,11 +6,31 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/04 13:45:32 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/04 18:08:19 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_parse(int data)
+{
+	static int	prev[500];
+	static int	index = 0;
+	int			i;
+
+	i = 0;
+	while (i < index)
+	{
+		if (data == prev[i])
+		{
+			fprintf(stderr, "Wrong data\n");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	prev[index++] = data;
+	return (0);
+}
 
 void	init(t_push *push)
 {
@@ -33,6 +53,7 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 	{
 		data = ft_atoi(argv[i]);
+		ft_parse(data);
 		if (stack_a == NULL)
 			stack_a = startstack(data);
 		else
