@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:31 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/03 15:33:12 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/04 15:05:42 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc);
 void	ft_sort_2(t_node **stack_a);
 void	ft_sort_3(t_node **stack_a);
 void	ft_sort_4(t_node **stack_a, t_node **stack_b);
+int	ft_find_num(t_node **stack_a, t_node **stack_b);
+// void	ft_sort_all(t_node **stack_a, t_node **stack_b);
 
 #endif
 

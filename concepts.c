@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort.c                                   :+:      :+:    :+:   */
+/*   concept.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/04 16:53:54 by mjong            ###   ########.fr       */
+/*   Created: 2024/04/04 16:51:10 by mjong             #+#    #+#             */
+/*   Updated: 2024/04/04 16:52:56 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_sort_4(t_node **stack_a, t_node **stack_b)
 			moves++;
 		}
 	}
-	printf("number moves: %d\n", moves);
+	printf("Number of moves: %d\n", moves);
 }
 
 int	ft_find_num(t_node **stack_a, t_node **stack_b)
@@ -75,46 +75,42 @@ int	ft_find_num(t_node **stack_a, t_node **stack_b)
 	return (smlst_num->data);
 }
 
-void	ft_sort_3(t_node **stack_a)
+void	ft_sort_4(t_node **stack_a, t_node **stack_b)
 {
-	if ((*stack_a)->data > (*stack_a)->link->data
-		&& (*stack_a)->data > (*stack_a)->link->link->data)
-		ft_ra(stack_a);
-	if ((*stack_a)->link->data > (*stack_a)->data
-		&& (*stack_a)->link->data > (*stack_a)->link->link->data)
-		ft_rra(stack_a);
-	if ((*stack_a)->data > (*stack_a)->link->data)
-		ft_sa(stack_a);
-}
-
-void	ft_sort_2(t_node **stack_a)
-{
-	if ((*stack_a)->data > (*stack_a)->link->data)
-		ft_sa(stack_a);
-}
-
-void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
-{
-	int smlst_num = 0;
-	count_stack_a(stack_a, push);
-	printf("%d\n", push->size_a);
-	count_stack_b(stack_b, push);
-	printf("%d\n", push->size_b);
-
-	if (argc == 1)
-		return ;
-	if (argc == 2)
-		ft_sort_2(stack_a);
-	if (argc == 3)
-		ft_sort_3(stack_a);
-	if (argc > 3)
+	int moves = 0;
+	while (*stack_a != NULL)
 	{
-		smlst_num = ft_find_num(stack_a, stack_b);
-		ft_sort_4(stack_a, stack_b);
+		t_node *smlst_num;
+		t_node *current;
+
+		smlst_num = *stack_a;
+		current = (*stack_a)->link;
+		while (current != NULL)
+		{
+			if (current->data < smlst_num->data)
+				smlst_num = current;
+			current = current->link;
+		}
+		while (*stack_a != smlst_num)
+		{
+			if ((*stack_a)->link == smlst_num)
+			{
+				ft_ra(stack_a);
+				moves++;
+			}
+			else
+			{
+				ft_rra(stack_a);
+				moves++;
+			}
+		}
+		ft_pb(stack_a, stack_b);
+		moves++;
 	}
-	while ((*stack_a)->data != smlst_num)
-		ft_ra(stack_a);
-	ft_display(*stack_a);
-	ft_display(*stack_b);
-	free(*stack_a);
+	while (*stack_b != NULL)
+	{
+		ft_pa(stack_a, stack_b);
+		moves++;
+	}
+	printf("Number of moves: %d\n", moves);
 }
