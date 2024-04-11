@@ -6,13 +6,13 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/09 15:10:30 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/11 17:55:30 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_parse(int data)
+int	ft_dup_check(int data)
 {
 	static int	prev[10000000];
 	static int	index = 0;
@@ -22,19 +22,37 @@ int	ft_parse(int data)
 	while (i < index)
 	{
 		if (data == prev[i])
-		{
-			fprintf(stderr, "Error\n");
-			exit(EXIT_FAILURE);
-		}
-		// if (!ft_isdigit(prev[i]))
-		// {
-		// 	fprintf(stderr, "entered alphabetical character\n");
-		// 	exit(EXIT_FAILURE);
-		// }
+			return (0);
 		i++;
 	}
 	prev[index++] = data;
-	return (0);
+	return (1);
+}
+
+int	ft_parse(int argc, char **argv)
+{
+	int	data;
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		data = ft_atoi(argv[i]);
+		if ((data == 0 && argv[i][0] != '0')
+		|| (data > 2147483647 && data < -2147483648))
+			return (0);
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if (!((argv[i][j] >= '0' && argv[i][j] <= '9')
+			|| (j == 0 && argv[i][j] == '-')))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 void	init(t_push *push)
@@ -60,7 +78,8 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 	{
 		data = ft_atoi(argv[i]);
-		ft_parse(data);
+		if (ft_parse(argc, argv) == 0 || ft_dup_check(data) == 0)
+			return (write(1, "Error\n", 6));
 		if (stack_a == NULL)
 			stack_a = startstack(data);
 		else

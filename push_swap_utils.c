@@ -6,11 +6,27 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/28 16:25:55 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/11 15:32:43 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	max_value(t_node *stack)
+{
+	int		max;
+	t_node *ptr;
+
+	max = 0;
+	ptr = stack;
+	while (ptr != NULL)
+	{
+		if (ptr->data > max)
+			max = ptr->data;
+		ptr = ptr->link;
+	}
+	return (max);
+}
 
 t_node	*startstack(int data)
 {
@@ -33,31 +49,6 @@ void	count_stack_a(t_node **stack, t_push *push)
 		count = count->link;
 		push->size_a++;
 	}
-}
-
-void	count_stack_b(t_node **stack, t_push *push)
-{
-	t_node	*count;
-	
-	count = *stack;
-	push->size_b = 0;
-	while (count != 0)
-	{
-		count = count->link;
-		push->size_b++;
-	}
-}
-
-void	add_node_beg(t_node **head, int data)
-{
-	t_node	*ptr;
-
-	ptr = malloc(sizeof(t_node));
-	ptr->data = data;
-	ptr->link = NULL;
-
-	ptr->link = *head;
-	*head = ptr;
 }
 
 void	add_node_end(t_node **head, int data)

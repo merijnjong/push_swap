@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/11 14:42:20 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/11 16:22:19 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
+	int	max;
+	int num;
 	
 	j = 0;
-	while (is_a_sorted(stack_a) == 0)
+	max = max_value(*stack_a);
+	num = 0;
+	while (max > 0)
+	{
+		max >>= 1;
+		num++;
+	}
+	while (j < num)
 	{
 		i = 0;
 		count_stack_a(stack_a, push);
@@ -63,23 +72,20 @@ void	ft_sort_3(t_node **stack_a)
 		ft_sa(stack_a);
 }
 
-void	ft_sort_2(t_node **stack_a)
-{
-	if ((*stack_a)->data > (*stack_a)->link->data)
-		ft_sa(stack_a);
-}
-
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 {
 	if (is_a_sorted(stack_a) == 1 || argc == 1)
 		return ;
 	if (argc == 2)
-		ft_sort_2(stack_a);
+	{
+		if ((*stack_a)->data > (*stack_a)->link->data)
+			ft_sa(stack_a);
+	}
 	if (argc == 3)
 		ft_sort_3(stack_a);
 	if (argc > 3)
 		ft_radix(stack_a, stack_b, push);
 	ft_display(*stack_a);
-	ft_display(*stack_b);
+	// ft_display(*stack_b);
 	free(*stack_a);
 }
