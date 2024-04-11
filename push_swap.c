@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/04 18:08:19 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/09 15:10:30 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_parse(int data)
 {
-	static int	prev[500];
+	static int	prev[10000000];
 	static int	index = 0;
 	int			i;
 
@@ -23,9 +23,14 @@ int	ft_parse(int data)
 	{
 		if (data == prev[i])
 		{
-			fprintf(stderr, "Wrong data\n");
+			fprintf(stderr, "Error\n");
 			exit(EXIT_FAILURE);
 		}
+		// if (!ft_isdigit(prev[i]))
+		// {
+		// 	fprintf(stderr, "entered alphabetical character\n");
+		// 	exit(EXIT_FAILURE);
+		// }
 		i++;
 	}
 	prev[index++] = data;
@@ -50,6 +55,8 @@ int	main(int argc, char *argv[])
 	stack_b = NULL;
 	i = 1;
 	init(&push);
+	if (argc == 2 && !argv[1][0])
+		return (1);
 	while (i < argc)
 	{
 		data = ft_atoi(argv[i]);

@@ -6,73 +6,49 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/04 16:53:54 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/11 14:42:20 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_4(t_node **stack_a, t_node **stack_b)
+void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 {
-	int moves = 0;
-	while (moves != 65000)
+	int		i;
+	int		j;
+	
+	j = 0;
+	while (is_a_sorted(stack_a) == 0)
 	{
-		if (*stack_a == NULL)
+		i = 0;
+		count_stack_a(stack_a, push);
+		while (i < push->size_a)
 		{
-			while ((*stack_b) != NULL)
-			{
-				ft_pa(stack_a, stack_b);
-				moves++;
-			}	
-			break ;
+			if (((*stack_a)->data >> j) & 1)
+				ft_ra(stack_a);
+			else
+				ft_pb(stack_a, stack_b);
+			i++;
 		}
-		if ((*stack_a)->data < (*stack_b)->data && (*stack_a)->data > (*stack_b)->link->data)
-		{
-			ft_pb(stack_a, stack_b);
-			moves++;
-			ft_sb(stack_b);
-			moves++;
-		}
-		else
-		{
-			ft_rb(stack_b);
-			moves++;
-		}
+		while (*stack_b != NULL)
+			ft_pa(stack_a, stack_b);
+		j++;
 	}
-	printf("number moves: %d\n", moves);
 }
 
-int	ft_find_num(t_node **stack_a, t_node **stack_b)
+int	is_a_sorted(t_node **stack_a)
 {
-	t_node *smlst_num = *stack_a;
-	t_node *bgst_num = *stack_a;
-	t_node *current = (*stack_a)->link;
-
-	while (current != NULL)
+	t_node	*ptr;
+	
+	ptr = *stack_a;
+	while (ptr != NULL && ptr->link != NULL)
 	{
-		if (current->data < smlst_num->data)
-			smlst_num = current;
-		if (current->data > bgst_num->data)
-			bgst_num = current;
-		current = current->link;
-	}
-	while (*stack_a != smlst_num)
-	{
-		if ((*stack_a)->link == smlst_num)
-			ft_ra(stack_a);
+		if (ptr->data < ptr->link->data)
+			ptr = ptr->link;
 		else
-			ft_rra(stack_a);
+			return (0);
 	}
-	ft_pb(stack_a, stack_b);
-	while (*stack_a != bgst_num)
-	{
-		if ((*stack_a)->link == bgst_num)
-			ft_ra(stack_a);
-		else
-			ft_rra(stack_a);
-	}
-	ft_pb(stack_a, stack_b);
-	return (smlst_num->data);
+	return (1);
 }
 
 void	ft_sort_3(t_node **stack_a)
@@ -95,25 +71,14 @@ void	ft_sort_2(t_node **stack_a)
 
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 {
-	int smlst_num = 0;
-	count_stack_a(stack_a, push);
-	printf("%d\n", push->size_a);
-	count_stack_b(stack_b, push);
-	printf("%d\n", push->size_b);
-
-	if (argc == 1)
+	if (is_a_sorted(stack_a) == 1 || argc == 1)
 		return ;
 	if (argc == 2)
 		ft_sort_2(stack_a);
 	if (argc == 3)
 		ft_sort_3(stack_a);
 	if (argc > 3)
-	{
-		smlst_num = ft_find_num(stack_a, stack_b);
-		ft_sort_4(stack_a, stack_b);
-	}
-	while ((*stack_a)->data != smlst_num)
-		ft_ra(stack_a);
+		ft_radix(stack_a, stack_b, push);
 	ft_display(*stack_a);
 	ft_display(*stack_b);
 	free(*stack_a);
