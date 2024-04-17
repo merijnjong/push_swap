@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/11 17:55:30 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/17 15:54:11 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	main(int argc, char *argv[])
 	{
 		data = ft_atoi(argv[i]);
 		if (ft_parse(argc, argv) == 0 || ft_dup_check(data) == 0)
-			return (write(1, "Error\n", 6));
+		{
+			write(2, "Error\n", 6);
+			exit(EXIT_FAILURE);
+		}
 		if (stack_a == NULL)
 			stack_a = startstack(data);
 		else
@@ -87,5 +90,6 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_sort(&stack_a, &stack_b, &push, argc - 1);
+	free(stack_a);
 	return (0);
 }

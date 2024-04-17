@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:31 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/11 15:04:06 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/17 15:15:44 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct t_data
 int		max_value(t_node *stack);
 t_node	*startstack(int data);
 void	count_stack_a(t_node **stack, t_push *push);
+t_node	*add_node_beg(t_node *head, int data);
 void	add_node_end(t_node **head, int data);
 void	ft_display(t_node *head);
 
@@ -58,8 +59,6 @@ void	ft_rrr(t_node **stack_a, t_node **stack_b);
 // push_swap_sort.c
 
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc);
-void	ft_sort_3(t_node **stack_a);
 int		is_a_sorted(t_node **stack_a);
-void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push);
 
 #endif

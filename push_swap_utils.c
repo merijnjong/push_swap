@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/11 15:32:43 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/17 15:39:49 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_node	*startstack(int data)
 	t_node	*head;
 
 	head = malloc(sizeof(t_node));
+	if (head == NULL)
+		free(head);
 	head->data = data;
 	head->link = NULL;
 	return (head);
@@ -41,7 +43,7 @@ t_node	*startstack(int data)
 void	count_stack_a(t_node **stack, t_push *push)
 {
 	t_node	*count;
-	
+
 	count = *stack;
 	push->size_a = 0;
 	while (count != 0)

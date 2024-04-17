@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:48:29 by mjong             #+#    #+#             */
-/*   Updated: 2024/03/28 12:43:28 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/16 14:20:14 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void    ft_rr(t_node **stack_a, t_node **stack_b)
 {
     t_node  *current;
     t_node  *new;   
-	
+
 	current = *stack_a;
     new = (*stack_a)->link;
     if (*stack_a != NULL && (*stack_a)->link != NULL)

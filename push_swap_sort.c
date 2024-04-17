@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/11 16:22:19 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/17 15:34:55 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,9 @@ void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 {
 	int	i;
 	int	j;
-	int	max;
-	int num;
-	
+
 	j = 0;
-	max = max_value(*stack_a);
-	num = 0;
-	while (max > 0)
-	{
-		max >>= 1;
-		num++;
-	}
-	while (j < num)
+	while (is_a_sorted(stack_a) == 0)
 	{
 		i = 0;
 		count_stack_a(stack_a, push);
@@ -48,7 +39,7 @@ void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 int	is_a_sorted(t_node **stack_a)
 {
 	t_node	*ptr;
-	
+
 	ptr = *stack_a;
 	while (ptr != NULL && ptr->link != NULL)
 	{
@@ -72,8 +63,59 @@ void	ft_sort_3(t_node **stack_a)
 		ft_sa(stack_a);
 }
 
+t_node	*append_stack(t_node *neg_stack, t_node *pos_stack)
+{
+	t_node	*result_stack;
+
+	result_stack = NULL;
+	if (pos_stack == NULL)
+		return (neg_stack);
+	result_stack = pos_stack;
+	while (result_stack->link != NULL)
+		result_stack = result_stack->link;
+	result_stack->link = neg_stack;
+	return (pos_stack);
+}
+
+t_node	*pos_to_neg(t_node *stack)
+{
+	t_node	*neg_stack;
+	int		data;
+
+	neg_stack = NULL;
+	while (stack != NULL)
+	{
+		data = stack->data;
+		if (data > 0)
+			data *= -1;
+		add_node_end(&neg_stack, data);
+		stack = stack->link;
+	}
+	return (neg_stack);
+}
+
+t_node	*neg_to_pos(t_node *stack)
+{
+	t_node	*pos_stack;
+
+	pos_stack = NULL;
+	while (stack != NULL)
+	{
+		add_node_end(&pos_stack, -(stack->data));
+		stack = stack->link;
+	}
+	return (pos_stack);
+}
+
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 {
+	t_node	*ptr;
+	t_node	*neg_stack;
+	t_node	*pos_stack;
+
+	ptr = *stack_a;
+	neg_stack = NULL;
+	pos_stack = NULL;
 	if (is_a_sorted(stack_a) == 1 || argc == 1)
 		return ;
 	if (argc == 2)
@@ -84,8 +126,21 @@ void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 	if (argc == 3)
 		ft_sort_3(stack_a);
 	if (argc > 3)
-		ft_radix(stack_a, stack_b, push);
-	ft_display(*stack_a);
-	// ft_display(*stack_b);
-	free(*stack_a);
+	{
+		while (ptr != NULL)
+		{
+			if (ptr->data < 0)
+				add_node_end(&neg_stack, ptr->data);
+			else
+				add_node_end(&pos_stack, ptr->data);
+			ptr = ptr->link;
+		}
+		ft_radix(&pos_stack, stack_b, push);
+		neg_stack = neg_to_pos(neg_stack);
+		ft_radix(&neg_stack, stack_b, push);
+		neg_stack = reverse(neg_stack);
+		neg_stack = pos_to_neg(neg_stack);
+		*stack_a = append_stack(pos_stack, neg_stack);
+	}
+    // ft_display(*stack_a);
 }
