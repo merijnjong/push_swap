@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:31 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/17 15:15:44 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/18 15:08:13 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include <limits.h>
 # include <unistd.h>
 
 typedef struct s_node
 {
 	int				data;
+	int				index;
 	struct s_node	*link;
 }	t_node;
 
@@ -59,6 +61,5 @@ void	ft_rrr(t_node **stack_a, t_node **stack_b);
 // push_swap_sort.c
 
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc);
-int		is_a_sorted(t_node **stack_a);
 
 #endif

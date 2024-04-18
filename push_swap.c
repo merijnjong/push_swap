@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/17 15:54:11 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/18 14:39:38 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ int	ft_dup_check(int data)
 
 int	ft_parse(int argc, char **argv)
 {
-	int	data;
-	int	i;
-	int	j;
+	long	data;
+	int		i;
+	int		j;
 
 	i = 1;
 	while (i < argc)
 	{
-		data = ft_atoi(argv[i]);
-		if ((data == 0 && argv[i][0] != '0')
-		|| (data > 2147483647 && data < -2147483648))
+		data = ft_atol(argv[i]);
+		if (data > INT_MAX || data < INT_MIN)
+			return (0);
+		if (data == 0 && argv[i][0] != '0')
 			return (0);
 		j = 0;
 		while (argv[i][j] != '\0')
@@ -67,17 +68,15 @@ int	main(int argc, char *argv[])
 	t_node	*stack_a;
 	t_node	*stack_b;
 	int		i;
-	int		data;
+	long	data;
 
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 1;
 	init(&push);
-	if (argc == 2 && !argv[1][0])
-		return (1);
 	while (i < argc)
 	{
-		data = ft_atoi(argv[i]);
+		data = ft_atol(argv[i]);
 		if (ft_parse(argc, argv) == 0 || ft_dup_check(data) == 0)
 		{
 			write(2, "Error\n", 6);

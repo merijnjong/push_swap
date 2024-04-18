@@ -1,16 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   concept.c                                          :+:      :+:    :+:   */
+/*   concepts.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:51:10 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/04 16:52:56 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/18 12:42:13 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_node	*append_stack(t_node *pos_stack, t_node *neg_stack)
+{
+	t_node	*result_stack;
+
+	result_stack = NULL;
+	if (neg_stack == NULL)
+		return (pos_stack);
+	result_stack = neg_stack;
+	while (result_stack->link != NULL)
+		result_stack = result_stack->link;
+	result_stack->link = pos_stack;
+	return (neg_stack);
+}
+
+t_node	*pos_to_neg(t_node *stack)
+{
+	t_node	*neg_stack;
+	int		data;
+
+	neg_stack = NULL;
+	while (stack != NULL)
+	{
+		data = stack->data;
+		if (data > 0)
+			data *= -1;
+		add_node_end(&neg_stack, data);
+		stack = stack->link;
+	}
+	return (neg_stack);
+}
+
+t_node	*neg_to_pos(t_node *stack)
+{
+	t_node	*pos_stack;
+
+	pos_stack = NULL;
+	while (stack != NULL)
+	{
+		add_node_end(&pos_stack, -(stack->data));
+		stack = stack->link;
+	}
+	return (pos_stack);
+}
 
 void	ft_sort_4(t_node **stack_a, t_node **stack_b)
 {
