@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:19:03 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:02:40 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,6 @@ t_node	*startstack(int data)
 	head->index = 0;
 	head->link = NULL;
 	return (head);
-}
-
-void	count_stack_a(t_node **stack, t_push *push)
-{
-	t_node	*count;
-
-	count = *stack;
-	push->size_a = 0;
-	while (count != 0)
-	{
-		count = count->link;
-		push->size_a++;
-	}
 }
 
 void	add_node_end(t_node **head, int data)

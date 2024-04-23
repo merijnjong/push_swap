@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:48:29 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:04:02 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 17:58:17 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,36 +122,36 @@ void	ft_rrb(t_node **stack_b)
 	write(1, "rrb\n", 4);
 }
 
-void	ft_rrr(t_node **stack_a, t_node **stack_b)
-{
-	t_node	*temp;
-	t_node	*temp2;
+// void	ft_rrr(t_node **stack_a, t_node **stack_b)
+// {
+// 	t_node	*temp;
+// 	t_node	*temp2;
 
-	temp = *stack_a;
-	temp2 = *stack_a;
-	if (*stack_a != NULL && (*stack_a)->link != NULL)
-	{
-		while (temp->link != NULL)
-		{
-			temp2 = temp;
-			temp = temp->link;
-		}
-		temp2->link = NULL;
-		temp->link = *stack_a;
-		*stack_a = temp;
-	}
-	temp = *stack_b;
-	temp2 = *stack_b;
-	if (*stack_b != NULL && (*stack_b)->link != NULL)
-	{
-		while (temp->link != NULL)
-		{
-			temp2 = temp;
-			temp = temp->link;
-		}
-		temp2->link = NULL;
-		temp->link = *stack_b;
-		*stack_b = temp;
-	}
-	write(1, "rrr\n", 4);
-}
+// 	temp = *stack_a;
+// 	temp2 = *stack_a;
+// 	if (*stack_a != NULL && (*stack_a)->link != NULL)
+// 	{
+// 		while (temp->link != NULL)
+// 		{
+// 			temp2 = temp;
+// 			temp = temp->link;
+// 		}
+// 		temp2->link = NULL;
+// 		temp->link = *stack_a;
+// 		*stack_a = temp;
+// 	}
+// 	temp = *stack_b;
+// 	temp2 = *stack_b;
+// 	if (*stack_b != NULL && (*stack_b)->link != NULL)
+// 	{
+// 		while (temp->link != NULL)
+// 		{
+// 			temp2 = temp;
+// 			temp = temp->link;
+// 		}
+// 		temp2->link = NULL;
+// 		temp->link = *stack_b;
+// 		*stack_b = temp;
+// 	}
+// 	write(1, "rrr\n", 4);
+// }

@@ -4,7 +4,7 @@ LIBFT 	:= ./libft
 
 HEADERS	:= -I./include -I$(LIBFT)
 LIBS	:= $(LIBFT)/libft.a
-SRCS	:= push_swap.c push_swap_utils.c push_swap_operations.c push_swap_operations2.c push_swap_sort.c
+SRCS	:= push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_operations.c push_swap_operations2.c push_swap_sort.c
 OBJS	:= ${SRCS:.c=.o}
 
 all: libft $(NAME)
@@ -25,8 +25,6 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT)
-
-# run:
 
 re: clean all
 

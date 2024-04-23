@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 17:08:01 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:03:37 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,6 @@ void	init(t_push *push)
 	push->size_b = 0;
 }
 
-void	ft_error(t_node **stack_a, t_node **stack_b)
-{
-	write(2, "Error\n", 6);
-	ft_free_stacks(stack_a, stack_b);
-	exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char *argv[])
 {
 	t_push	push;
@@ -112,5 +105,6 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_sort(&stack_a, &stack_b, &push, argc - 1);
+	free(stack_a);
 	return (0);
 }

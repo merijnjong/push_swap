@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:31 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:37:48 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:03:55 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,15 @@ void	ft_free_stacks(t_node **stack_a, t_node **stack_b);
 void	min_value(t_node **stack);
 int		max_value(t_node *stack);
 t_node	*startstack(int data);
-void	count_stack_a(t_node **stack, t_push *push);
 void	add_node_end(t_node **head, int data);
 void	ft_display(t_node *head);
+
+// push_swap_utils2.c
+
+void	ft_set_index(t_node **stack_a, int argc);
+int		is_a_sorted(t_node **stack_a);
+void	count_stack_a(t_node **stack, t_push *push);
+void	ft_error(t_node **stack_a, t_node **stack_b);
 
 // push_swap_operations.c
 
@@ -57,13 +63,11 @@ void	ft_rb(t_node **stack_b);
 void	ft_rr(t_node **stack_a, t_node **stack_b);
 void	ft_rra(t_node **head);
 void	ft_rrb(t_node **stack_b);
-void	ft_rrr(t_node **stack_a, t_node **stack_b);
+// void	ft_rrr(t_node **stack_a, t_node **stack_b);
 
 // push_swap_sort.c
 
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc);
-void	ft_sort_4(t_node **stack_a, t_node **stack_b);
 void	ft_sort_3(t_node **stack_a);
-void	ft_sort_5(t_node **stack_a, t_node **stack_b);
 
 #endif

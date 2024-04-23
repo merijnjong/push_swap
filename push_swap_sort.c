@@ -6,26 +6,11 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 17:09:49 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:00:03 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_a_sorted(t_node **stack_a)
-{
-	t_node	*ptr;
-
-	ptr = *stack_a;
-	while (ptr != NULL && ptr->link != NULL)
-	{
-		if (ptr->data < ptr->link->data)
-			ptr = ptr->link;
-		else
-			return (0);
-	}
-	return (1);
-}
 
 void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 {
@@ -48,34 +33,6 @@ void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 		while (*stack_b != NULL)
 			ft_pa(stack_a, stack_b);
 		j++;
-	}
-}
-
-void	ft_set_index(t_node **stack_a, int argc)
-{
-	t_node	*temp;
-	t_node	*node_to_change;
-	int		index;
-	int		highest;
-
-	index = argc;
-	while (index != 0)
-	{
-		node_to_change = NULL;
-		temp = *stack_a;
-		highest = INT_MIN;
-		while (temp)
-		{
-			if (temp->data > highest && temp->index == 0)
-			{
-				highest = temp->data;
-				node_to_change = temp;
-			}
-			temp = temp->link;
-		}
-		if (node_to_change)
-			node_to_change->index = index;
-		index--;
 	}
 }
 
@@ -134,5 +91,4 @@ void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 		ft_radix(stack_a, stack_b, push);
 	}
 	ft_free_stacks(stack_a, stack_b);
-	// ft_display(*stack_a);
 }
