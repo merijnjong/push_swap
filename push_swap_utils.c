@@ -6,16 +6,46 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/18 12:36:06 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:05:31 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	min_value(t_node **stack)
+{
+	int		min;
+	int		count;
+	t_node	*ptr;
+
+	min = (*stack)->data;
+	count = 0;
+	ptr = *stack;
+	while (ptr != NULL)
+	{
+		if (ptr->data < min)
+			min = ptr->data;
+		ptr = ptr->link;
+	}
+	ptr = *stack;
+	while (ptr->data != min)
+	{
+		ptr = ptr->link;
+		count++;
+	}
+	while ((*stack)->data != min)
+	{
+		if (count == 4)
+			ft_rra(stack);
+		else
+			ft_ra(stack);
+	}
+}
+
 int	max_value(t_node *stack)
 {
 	int		max;
-	t_node *ptr;
+	t_node	*ptr;
 
 	max = 0;
 	ptr = stack;
@@ -56,8 +86,8 @@ void	count_stack_a(t_node **stack, t_push *push)
 
 void	add_node_end(t_node **head, int data)
 {
-	t_node *new_node;
-	t_node *current;
+	t_node	*new_node;
+	t_node	*current;
 
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)

@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/18 12:51:52 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:04:51 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,25 @@ void	ft_set_index(t_node **stack_a, int argc)
 	}
 }
 
+void	ft_sort_5(t_node **stack_a, t_node **stack_b)
+{
+	min_value(stack_a);
+	ft_pb(stack_a, stack_b);
+	min_value(stack_a);
+	ft_pb(stack_a, stack_b);
+	ft_sort_3(stack_a);
+	ft_pa(stack_a, stack_b);
+	ft_pa(stack_a, stack_b);
+}
+
+void	ft_sort_4(t_node **stack_a, t_node **stack_b)
+{
+	min_value(stack_a);
+	ft_pb(stack_a, stack_b);
+	ft_sort_3(stack_a);
+	ft_pa(stack_a, stack_b);
+}
+
 void	ft_sort_3(t_node **stack_a)
 {
 	if ((*stack_a)->data > (*stack_a)->link->data
@@ -93,9 +112,6 @@ void	ft_sort_3(t_node **stack_a)
 
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 {
-	t_node	*ptr;
-
-	ptr = *stack_a;
 	if (is_a_sorted(stack_a) == 1 || argc == 1)
 		return ;
 	if (argc == 2)
@@ -105,10 +121,14 @@ void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 	}
 	if (argc == 3)
 		ft_sort_3(stack_a);
-	if (argc > 3)
+	if (argc == 4)
+		ft_sort_4(stack_a, stack_b);
+	if (argc == 5)
+		ft_sort_5(stack_a, stack_b);
+	if (argc > 5)
 	{
 		ft_set_index(stack_a, argc);
 		ft_radix(stack_a, stack_b, push);
 	}
-    // ft_display(*stack_a);
+	// ft_display(*stack_a);
 }

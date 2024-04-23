@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/18 14:39:38 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 15:59:38 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ void	init(t_push *push)
 	push->size_b = 0;
 }
 
+void	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_push	push;
@@ -78,10 +84,7 @@ int	main(int argc, char *argv[])
 	{
 		data = ft_atol(argv[i]);
 		if (ft_parse(argc, argv) == 0 || ft_dup_check(data) == 0)
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
+			ft_error();
 		if (stack_a == NULL)
 			stack_a = startstack(data);
 		else
