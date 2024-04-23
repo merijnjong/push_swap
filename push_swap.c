@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:42:28 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 17:08:01 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,5 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_sort(&stack_a, &stack_b, &push, argc - 1);
-	free(stack_a);
 	return (0);
 }

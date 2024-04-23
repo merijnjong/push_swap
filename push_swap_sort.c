@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:55:54 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 17:09:49 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 		count_stack_a(stack_a, push);
 		while (i < push->size_a)
 		{
-			if (((*stack_a)->index >> j) % 1)
+			if (((*stack_a)->index >> j) & 1)
 				ft_ra(stack_a);
 			else
 				ft_pb(stack_a, stack_b);
