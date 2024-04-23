@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:44:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:04:51 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:55:54 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_radix(t_node **stack_a, t_node **stack_b, t_push *push)
 		count_stack_a(stack_a, push);
 		while (i < push->size_a)
 		{
-			if (((*stack_a)->index >> j) & 1)
+			if (((*stack_a)->index >> j) % 1)
 				ft_ra(stack_a);
 			else
 				ft_pb(stack_a, stack_b);
@@ -113,7 +113,10 @@ void	ft_sort_3(t_node **stack_a)
 void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 {
 	if (is_a_sorted(stack_a) == 1 || argc == 1)
+	{
+		ft_free_stacks(stack_a, stack_b);
 		return ;
+	}
 	if (argc == 2)
 	{
 		if ((*stack_a)->data > (*stack_a)->link->data)
@@ -130,5 +133,6 @@ void	ft_sort(t_node **stack_a, t_node **stack_b, t_push *push, int argc)
 		ft_set_index(stack_a, argc);
 		ft_radix(stack_a, stack_b, push);
 	}
+	ft_free_stacks(stack_a, stack_b);
 	// ft_display(*stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:31 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:05:50 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:37:48 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct t_data
 	int	size_a;
 	int	size_b;
 }	t_push;
+
+void	ft_free_stacks(t_node **stack_a, t_node **stack_b);
 
 // push_swap_utils.c
 

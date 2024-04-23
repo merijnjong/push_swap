@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:38 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 16:05:31 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:19:03 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	min_value(t_node **stack)
 {
-	int		min;
-	int		count;
-	t_node	*ptr;
+	int			min;
+	static int	count = 0;
+	t_node		*ptr;
 
 	min = (*stack)->data;
-	count = 0;
 	ptr = *stack;
 	while (ptr != NULL)
 	{
@@ -35,7 +34,7 @@ void	min_value(t_node **stack)
 	}
 	while ((*stack)->data != min)
 	{
-		if (count == 4)
+		if (count >= 4)
 			ft_rra(stack);
 		else
 			ft_ra(stack);

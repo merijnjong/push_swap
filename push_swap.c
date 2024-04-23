@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:55:14 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/23 15:59:38 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/23 16:42:28 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,35 @@ int	ft_parse(int argc, char **argv)
 	return (1);
 }
 
+void	ft_free_stacks(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*ptr;
+
+	ptr = NULL;
+	while (*stack_a != NULL)
+	{
+		ptr = (*stack_a)->link;
+		free(*stack_a);
+		*stack_a = ptr;
+	}
+	while (*stack_b != NULL)
+	{
+		ptr = (*stack_b)->link;
+		free(*stack_b);
+		*stack_b = ptr;
+	}
+}
+
 void	init(t_push *push)
 {
 	push->size_a = 0;
 	push->size_b = 0;
 }
 
-void	ft_error(void)
+void	ft_error(t_node **stack_a, t_node **stack_b)
 {
 	write(2, "Error\n", 6);
+	ft_free_stacks(stack_a, stack_b);
 	exit(EXIT_FAILURE);
 }
 
@@ -84,7 +104,7 @@ int	main(int argc, char *argv[])
 	{
 		data = ft_atol(argv[i]);
 		if (ft_parse(argc, argv) == 0 || ft_dup_check(data) == 0)
-			ft_error();
+			ft_error(&stack_a, &stack_b);
 		if (stack_a == NULL)
 			stack_a = startstack(data);
 		else
